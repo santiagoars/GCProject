@@ -2,15 +2,28 @@ import processing.video.*;
 
 Capture pantalla;
 
-void settings(){
-  size(600,600);
-  pantalla = new Capture(this, 640, 480, 30);
-  pantalla.start();
+void setup(){
+  size(640,480);
+  String[] cameras = Capture.list();
+  
+  if (cameras.length == 0) {
+    println("There are no cameras available for capture.");
+    exit();
+  } else {
+    println("Available cameras:");
+    for (int i = 0; i < cameras.length; i++) {
+      println(cameras[i]);
+    }
+    
+    // The camera can be initialized directly using an 
+    // element from the array returned by list():
+    pantalla = new Capture(this, cameras[0]);
+    pantalla.start();     
+  }      
 }
 
 void draw(){
-  pantalla.read();
-  background(0);
-  tint(255, mouseY, mouseY);
-  image(pantalla, 0,0, mouseX, mouseY);
+  if (pantalla.available() == true) {
+    pantalla.read();
+  }
 }
