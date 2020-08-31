@@ -1,11 +1,12 @@
 var img;
 let zAngle = 0;
 let yAngle = 0;
-
+let text;
 function preload(){
     img = loadImage("texture.jpg")
     googles = loadImage("texture2.png")
     sword = loadModel("assets/sword.obj");
+    text = loadImage("assets/tex/blue.jpg")
 }
 
 function setup() {
@@ -23,8 +24,9 @@ function draw() {
 
     clear();
     push();
-    translate(400,0);
-    scale(0.4);
+    translate(400,50);
+    texture(text);
+    scale(0.8);
     if(keyIsPressed){
         if (key === "a") {
           zAngle -= 0.05;
