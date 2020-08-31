@@ -1,4 +1,6 @@
 var img;
+let zAngle = 0;
+let yAngle = 0;
 
 function preload(){
     img = loadImage("texture.jpg")
@@ -18,11 +20,28 @@ function setup() {
 }
 
 function draw() {
-    scale(0.4);
-    model(sword);
 
-    push();
     clear();
+    push();
+    translate(400,0);
+    scale(0.4);
+    if(keyIsPressed){
+        if (key === "a") {
+          zAngle -= 0.05;
+        }else if(key === "d"){
+          zAngle += 0.05;
+        }else if(key === "w"){
+          yAngle += 0.05;
+        }else if(key === "s"){
+          yAngle -= 0.05;
+        }
+    }
+    rotateZ(zAngle);
+    rotateY(yAngle);
+    model(sword);
+    pop();
+    
+
     var positions = ctracker.getCurrentPosition();
     for (var i=0; i<positions.length; i++) {
         if (i == 66) {
@@ -84,6 +103,5 @@ function draw() {
             endShape(CLOSE);
         }
     }
-    pop();
     
 }
