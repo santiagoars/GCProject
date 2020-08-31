@@ -2,11 +2,14 @@ var img;
 let zAngle = 0;
 let yAngle = 0;
 let text;
+let song;
 function preload(){
     img = loadImage("texture.jpg")
     googles = loadImage("texture2.png")
+    gun = loadModel("assets/deagle.obj")
     sword = loadModel("assets/sword.obj");
     text = loadImage("assets/tex/blue.jpg")
+    light = loadImage("assets/tex/light.jpg")
 }
 
 function setup() {
@@ -42,6 +45,15 @@ function draw() {
     rotateY(yAngle);
     model(sword);
     pop();
+
+    push()
+    translate(-250, 0)
+    texture(light)
+    scale(25)
+    rotateY(1.8);
+    model(gun)
+    pop()
+
     
 
     var positions = ctracker.getCurrentPosition();
