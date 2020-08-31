@@ -3,6 +3,7 @@ var img;
 function preload(){
     img = loadImage("texture.jpg")
     googles = loadImage("texture2.png")
+    sword = loadModel("assets/sword.obj");
 }
 
 function setup() {
@@ -17,6 +18,10 @@ function setup() {
 }
 
 function draw() {
+    scale(0.4);
+    model(sword);
+
+    push();
     clear();
     var positions = ctracker.getCurrentPosition();
     for (var i=0; i<positions.length; i++) {
@@ -79,4 +84,6 @@ function draw() {
             endShape(CLOSE);
         }
     }
+    pop();
+    
 }
