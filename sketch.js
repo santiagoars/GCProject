@@ -2,20 +2,25 @@ var img;
 let zAngle = 0;
 let yAngle = 0;
 let text;
-let song;
+let cnv;
+let angle;
+let mat;
+
 function preload(){
     img = loadImage("texture.jpg")
     googles = loadImage("texture2.png")
-    gun = loadModel("assets/deagle.obj")
+    gun = loadModel("assets/Spartan.obj")
     sword = loadModel("assets/sword.obj");
     text = loadImage("assets/tex/blue.jpg")
     light = loadImage("assets/tex/light.jpg")
+    mat = loadImage("assets/tex/gold.jpeg")
+    angle = 1.2;
 }
 
 function setup() {
     var videoInput = createCapture(VIDEO);
     videoInput.size(displayWidth, displayHeight);
-    var cnv = createCanvas(displayWidth, displayHeight, WEBGL);
+    cnv = createCanvas(displayWidth, displayHeight, WEBGL);
     cnv.position(0, 0, 1);
     ctracker = new clm.tracker();
     ctracker.init();
@@ -43,14 +48,20 @@ function draw() {
     }
     rotateZ(zAngle);
     rotateY(yAngle);
+    translate(0, 0, -100);
     model(sword);
     pop();
 
     push()
-    translate(-250, 0)
-    texture(light)
-    scale(25)
-    rotateY(1.8);
+    translate(-400, 250)
+    texture(mat)
+    scale(700)
+    rotateX(1.5)
+    rotateZ(1.2)
+    if(mouseIsPressed){
+      angle += 0.5;
+      rotateZ(angle)
+    }
     model(gun)
     pop()
 
@@ -156,5 +167,4 @@ function draw() {
             endShape(CLOSE);
         }
     }
-    
 }
